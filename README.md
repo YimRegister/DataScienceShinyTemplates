@@ -1,4 +1,2 @@
 # DataScienceShinyTemplates
-# DataScienceShinyTemplates
-# DataScienceShinyTemplates
-# DataScienceShinyTemplates
+
