@@ -11,19 +11,35 @@ library(shiny)
 library(emo)
 library(shinyLP)
 library(tiktokrmd)
+library(sortable)
+labels <- list(
+  "one",
+  "two",
+  "three",
+  "four",
+  "five"
+)
 
+labels_shuffled <- sample(labels)
+
+rank_list_basic <- rank_list(
+  text = "Drag the steps into the right order",
+  labels = labels_shuffled,
+  input_id = "rank_list_basic"
+)
 # Define shiny UI
 shinyUI(fluidPage(theme = "bootstrap.css",
   
   # begin the navbar
-  navbarPage(icon("rainbow"),
+  navbarPage(emo::ji("rainbow"),
              
+             # INTRODUCTION
              tabPanel(p("Intro"),
                       
                       column(6, align="center", offset = 3,
                       # Page title
-                      titlePanel("Template Introduction"),
-                      h2(emo::ji("coder")),
+                      titlePanel("Introduction"),
+                      h1(emo::ji("computer")),
                       p("_______________"),
                       
                       # Behavior
@@ -46,12 +62,14 @@ shinyUI(fluidPage(theme = "bootstrap.css",
              
              
              
-             
+             # LEARNING GOALS FOR THIS LESSON
              tabPanel(p("Learning Goals"),
                       fluidRow(
                       column(6, align="center", offset = 3,
                       # Page title
+                      
                       titlePanel("Learning Goals"),
+                      h1(emo::ji("target")),
                       p("_______________"),
                     
                         
@@ -79,11 +97,13 @@ shinyUI(fluidPage(theme = "bootstrap.css",
             #end of tabpanel 
             ),
             
+            # THE PROBLEM, THE DATA, THE GOAL
             tabPanel(p("1-2-3"),
                      fluidRow(
                      column(4, align="center", offset = 4,
                             # Page title
-                            titlePanel("The Problem, The Data, The Goal"),
+                            titlePanel("The Problem, The Data, The Output"),
+                            h1(emo::ji("triangular_flag")),
                             p("_______________"),
                             
                      )),
@@ -104,12 +124,13 @@ shinyUI(fluidPage(theme = "bootstrap.css",
                      #end of tabpanel 
             ),
             
-            
+            # LABEL SOME DATA
             tabPanel(p("DIY Labeling"),
                      fluidRow(
                      column(4, align="center", offset = 4,
                             # Page title
                             titlePanel("Label it yourself"),
+                            h1(emo::ji("memo")),
                             p("Is it positive, negative, or neutral?"),
                             p("_______________"),
                            
@@ -177,33 +198,31 @@ shinyUI(fluidPage(theme = "bootstrap.css",
                      #end of tabpanel 
             ),
             
+            
+            
+            # ALGORITHM STEPS (HIGH LEVEL) # what if the student could fill this in themselves? or drag and drop order the steps?????remotes::install_github("rstudio/sortable")
             tabPanel("Algorithm",
                      
                      
-              mainPanel(
-                column(6, offset=3,
-                img(src="flowchart.jpeg", width="360px;")),
-                
-                
-                fluidRow(align="center",
-                         
-                         actionButton(inputId = "back", label = "Back", style="color: #fff; background-color: #337ab7; border-color: #2e6da4; margin-right:200px"),
-                         actionButton(inputId = "next", label = "Next",style="color: #fff; background-color: #337ab7; border-color: #2e6da4")
-                ),
-                
-                
-                
-                
-                ),
-              sidebarPanel(h3("Algorithm steps"),
-                           tags$ul(align="left",
-                                   tags$li("First list item"), 
-                                   tags$li("Second list item"), 
-                                   tags$li("Third list item")
-                           ),
+               column(width=8,align="center", offset=2,
+                  
+                  h2("How does the algorithm work?"),
+                  h1(emo::ji("shuffle")),
+                  p("_______________"),
+                  rank_list_basic,
+                  tags$b("Result"),
+                  verbatimTextOutput("results_basic"),
+                  br(),
+                  
+                  fluidRow(align="center",
                            
-                           
-                           )
+                           actionButton(inputId = "back", label = "Back", style="color: #fff; background-color: #337ab7; border-color: #2e6da4; margin-right:200px"),
+                           actionButton(inputId = "next", label = "Next",style="color: #fff; background-color: #337ab7; border-color: #2e6da4")
+                  )
+               )
+                
+              
+              
               
               
               
@@ -212,11 +231,15 @@ shinyUI(fluidPage(theme = "bootstrap.css",
             #end of tabpanel  
             ),
             
-            
-            tabPanel("Interactive",
+            # INTERACTIVE DASHBOARD
+            tabPanel("Let's Play",
+                     column(width=8,align="center", offset=2,
+                     h2("Interactive Dashbord"),
+                     h1(emo::ji("magnifying")),
+                     p("_______________"),
                      
                      
-                     mainPanel(
+                    
                        
                        DT::dataTableOutput("originaldata"),
                        
@@ -233,12 +256,47 @@ shinyUI(fluidPage(theme = "bootstrap.css",
                      
             ),
             
-            tabPanel('In the News'
+            # RELEVANT EXAMPLE
+            tabPanel('In the News',
+                     
+                     column(width=8,align="center", offset=2,
+                            h2("In the News"),
+                            h1(emo::ji("newspaper")),
+                            p("_______________"),
                      
                      
+                     fluidRow(align="center",
+                              
+                              actionButton(inputId = "back", label = "Back", style="color: #fff; background-color: #337ab7; border-color: #2e6da4; margin-right:200px"),
+                              actionButton(inputId = "next", label = "Next",style="color: #fff; background-color: #337ab7; border-color: #2e6da4")
+                     ),    
+                     )
             ),
             
+            # CRITICAL DISCUSSION PROMPTS
+            tabPanel('What do you think?',
+                     column(width=8,align="center", offset=2,
+                            h2("Discussion Prompts"),
+                            h1(emo::ji("light_bulb")),
+                            p("_______________"),
+                     fluidRow(align="center",
+                              
+                              actionButton(inputId = "back", label = "Back", style="color: #fff; background-color: #337ab7; border-color: #2e6da4; margin-right:200px"),
+                              actionButton(inputId = "next", label = "Next",style="color: #fff; background-color: #337ab7; border-color: #2e6da4")
+                     ), 
+                     
+                     ),
+            ),
+            
+            
+            
             tabPanel("Gallery",
+                     
+                     column(width=8,align="center", offset=2,
+                            h2("Tik Tok Time"),
+                            h1(emo::ji("mobile_phone")),
+                            p("_______________"),
+                     ),
                      
                      sidebarPanel(
                        p("Upload yours"),
