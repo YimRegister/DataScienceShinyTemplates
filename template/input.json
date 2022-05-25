@@ -1,0 +1,18 @@
+{
+ 
+ "introtext": "What is the world talking about? What does language say about who you are or what’s going on? This lesson is about language – how it’s used to communicate, topics people tend to talk about most, and how language can be scored as positive or negative. We can even try to figure out what emotions people are having through how they type! Language analysis is used for sorting topics, moderating violence, and even detecting depression. This is complicated because it’s very hard to use Data Science to determine how someone is really feeling. We need to be careful about knowing what Data Science can and cannot do for us.",
+ 
+ 
+ 
+ "learningtargets": ["Understand that all data is permanent on the internet and can be used for data analysis and research",
+                      "Frequency of words can tell us more about a topic or a person and what they tend to talk about",
+                      "These frequencies can be used to determine things about a person – like if they are positive or negative",
+                      "Those decisions can be used to sort people into what they want to see next in their feed.",
+                      "Those decisions can be used to remove people from social media platforms, sometimes unfairly."
+
+                      
+                      
+                      ]
+}
+
+
