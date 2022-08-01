@@ -1,0 +1,40 @@
+{
+ 
+ "introtext": "What is the world talking about? What does language say about who you are or what’s going on? This lesson is about language – how it’s used to communicate, topics people tend to talk about most, and how language can be scored as positive or negative. We can even try to figure out what emotions people are having through how they type! Language analysis is used for sorting topics, moderating violence, and even detecting depression. This is complicated because it’s very hard to use Data Science to determine how someone is really feeling. We need to be careful about knowing what Data Science can and cannot do for us.",
+ 
+ 
+ 
+ "learningtargets": ["Understand that all data is permanent on the internet and can be used for data analysis and research",
+                      "Frequency of words can tell us more about a topic or a person and what they tend to talk about",
+                      "These frequencies can be used to determine things about a person – like if they are positive or negative",
+                      "Those decisions can be used to sort people into what they want to see next in their feed.",
+                      "Those decisions can be used to remove people from social media platforms, sometimes unfairly."
+
+                      
+                      
+                      ],
+                      
+"problemdataoutput": ["Understand more about topics public figures use on Twitter. What are the words they use, and the emotions they display.", "Tweets from a selection of public figures, from Tech, Music, Activism, Politics, Sports, etc.", "Top words that public figures tend to use on Twitter, and categorizing emotions of their tweets!"],
+
+"labelinstructions": "Is the image a face? What can you tell about the image? Gender? Age? Do you recognize the person?",
+
+
+"diylabel": ["bobthedragqueen.jpeg", "obama.jpeg", "elliot.jpeg"],
+
+"algorithmsteps": ["Collect tweet data from Twitter: including the text, the person posting, and the date",
+                    "Separate all the words in all the tweets and count how often they occur",
+                    "Get rid of very common words like 'and', 'I', 'a', 'the'",
+                    "Score each word according to a ledger of positive and negative words.",
+                    "For each person, report their top common words, as well as the average of if they speak positively or negatively across all tweets."
+],
+
+"newsvideo_input": "https://www.youtube.com/embed/lSSZ3-ZIkHU",
+
+"discussionprompts": ["Name one of the public figures you looked at. What topics did they tend to talk about?",
+"Do you think you can tell a lot about a person by the words they use on Twitter?",
+"What do you think about moderating how people speak online? Should we be able to say anything? Should certain things not be allowed?",
+"Imagine someone had a post taken down because it was offensive. Can you think of a scenario where this was actually a mistake?"
+]
+}
+
+

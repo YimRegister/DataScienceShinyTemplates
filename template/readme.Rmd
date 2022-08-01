@@ -1,0 +1,36 @@
+---
+title: "Joy and Justice Data Science README"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## What are these templates for?
+
+## Template files
+
+#### ui.R
+
+#### server.R
+
+#### global.R
+
+#### input.json
+
+#### www/
+
+## What are each of the sections about?
+
+#### Introduction
+#### Learning Targets
+#### Problem, Data, Output
+
+## How do I use a premade lesson?
+
+## How do I make my own lesson?
+
+## How do I publish a lesson for students to use?
+
+## R Shiny Resources

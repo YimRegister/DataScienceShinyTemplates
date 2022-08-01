@@ -16,17 +16,8 @@ library(sortable)
 
 
 
-labels <- list("one",
-               "two",
-               "three",
-               "four",
-               "five")
 
-labels_shuffled <- sample(labels)
 
-rank_list_basic <- rank_list(text = "Drag the steps into the right order",
-                             labels = labels_shuffled,
-                             input_id = "rank_list_basic")
 # Define shiny UI
 shinyUI(fluidPage(
   theme = "bootstrap.css",
@@ -40,21 +31,21 @@ shinyUI(fluidPage(
       p("Intro"),
       
       column(
-        6,
+        8,
         align = "center",
-        offset = 3,
+        offset = 2,
         # Page title
         titlePanel("Introduction"),
-        h1(emo::ji("computer")),
+        #h1(emo::ji("computer")),
         p("_______________"),
         
         # Behavior
+        img(src = "computer.jpeg", align = "center", width="20%"),
+        wellPanel(style = "background: #E1E8F4", textOutput("introtext")),
         
-        wellPanel( textOutput("introtext")),
-        img(src = "computer.jpeg", align = "center"),
         br(),
-        br(),
-        textInput("name", "What's your name?"),
+        
+        textInput("username", "What's your name?"),
         br(),
         #actionButton(
          # inputId = "back",
@@ -80,9 +71,9 @@ shinyUI(fluidPage(
       p("Learning Targets"),
       fluidRow(
         column(
-          6,
+          8,
           align = "center",
-          offset = 3,
+          offset = 2,
           # Page title
           
           titlePanel("Learning Targets"),
@@ -91,21 +82,20 @@ shinyUI(fluidPage(
           
           
           # Behavior
-          wellPanel(
+          wellPanel(style = "background: #E1E8F4",
             p("By the end of the lesson, you'll know more about:"),
-            tags$ul(id = "learningtarget_list",
-              align = "left",
-              tags$li("First list item"),
-              tags$li("Second list item"),
-              tags$li("Third list item")
+            
+            tags$ul(
+              uiOutput('learningtarget_list'), align="left"
             ),
             p("_______________"),
+            uiOutput("makeyourowngoal"),
             
             #at the end we will see if they 'achieved' their goal
             textInput(
               "mygoal",
-              "Another learning target of my own",
-              "make something cool..."
+              "My goal:",
+              "learn about data science..."
             ),
           )
         )
@@ -134,22 +124,22 @@ shinyUI(fluidPage(
     
     # THE PROBLEM, THE DATA, THE OUTPUT
     tabPanel(value = "problemdataoutput",
-      p("1-2-3"),
+      p("Problem, Data, Output"),
       fluidRow(column(
         4,
         align = "center",
         offset = 4,
         # Page title
-        titlePanel("The Problem, The Data, The Output"),
-        h1(emo::ji("triangular_flag")),
-        p("_______________"),
+        titlePanel("Problem, Data, Output"),
+        h1(emo::ji("gear")),
+        p("__________________")
         
       )),
       
       fluidRow(
-        column(4, wellPanel(p("Column width 4"))),
-        column(4, wellPanel(p("Column width 4"))),
-        column(4, wellPanel(p("Column width 4")))
+        column(4, h4("Problem: What are we trying to solve?"),wellPanel(style = "background: #60D2CB",textOutput("theproblem"))),
+        column(4, h4("Data: What data will we look at?"),wellPanel(style = "background: #FFDE70",textOutput("thedata"),br())),
+        column(4, h4("Output: What will we get in the end?"),wellPanel(style = "background: #FF8A70",textOutput("theoutput")))
       ),
       
       fluidRow(
@@ -176,13 +166,14 @@ shinyUI(fluidPage(
     tabPanel(value = "diylabel",
       p("DIY Labeling"),
       fluidRow(column(
-        4,
+        6,
         align = "center",
-        offset = 4,
+        offset = 3,
         # Page title
         titlePanel("Label it yourself"),
         h1(emo::ji("memo")),
-        p("Is it positive, negative, or neutral?"),
+        span(textOutput("labelinstructions"),style="font-size: 20px"),
+        
         p("_______________"),
         
         
@@ -191,41 +182,51 @@ shinyUI(fluidPage(
         
       ),),
       fluidRow(
-        column(3, wellPanel(
-          p("Column width 3"),
+        column(4, wellPanel(style = "background: #E1E8F4",
+         
           
-          img(src = "pic1.png", style = "width:150px;"),
-          textInput(label = "Label", inputId = "label1"),
+          uiOutput(outputId="labelit1"),
           
+          br(),br(),br(),br(), #sometimes you have to add in br() tags just to get the panels to line up. Up to you, personal preference
+          textInput(label = "Your Label", inputId = "yourlabel1"),
+          br(),
+          sliderInput("label3ease", "How easy was this to label? 1 being difficult to come up with a label, 5 being very easy to come up with a label:",
+                      min = 1, max = 5,
+                      value = 1),
           
-        )),
-        
-        column(3, wellPanel(
-          p("Column width 3"),
-          
-          img(src = "pic2.png", style = "width:150px;"),
-          textInput(label = "Label", inputId = "label1"),
           
           
         )),
         
-        column(3, wellPanel(
-          p("Column width 3"),
+        column(4, wellPanel(style = "background: #E1E8F4",
           
-          img(src = "pic3.png", style = "width:150px;"),
-          textInput(label = "Label", inputId = "label1"),
+          
+          uiOutput(outputId="labelit2"),
+          br(),br(),br(),
+          textInput(label = "Your Label", inputId = "yourlabel2"),
+          br(),
+          sliderInput("label3ease", "How easy was this to label? 1 being difficult to come up with a label, 5 being very easy to come up with a label:",
+                      min = 1, max = 5,
+                      value = 1),
+          
           
           
         )),
         
-        column(3, wellPanel(
-          p("Column width 3"),
+        column(4, wellPanel(style = "background: #E1E8F4",
+         
           
-          img(src = "pic4.png", style = "width:150px;"),
-          textInput(label = "Label", inputId = "label1"),
+          uiOutput(outputId="labelit3"),
+          br(),
+          textInput(label = "Your Label", inputId = "yourlabel3"),
+          br(),
+          sliderInput("label3ease", "How easy was this to label? 1 being difficult to come up with a label, 5 being very easy to come up with a label:",
+                      min = 1, max = 5,
+                      value = 1),
           
           
         )),
+        
         
         
         
@@ -256,7 +257,7 @@ shinyUI(fluidPage(
     
     # ALGORITHM STEPS (HIGH LEVEL) # what if the student could fill this in themselves? or drag and drop order the steps?????remotes::install_github("rstudio/sortable")
     tabPanel(value = "algorithmsteps",
-      "Algorithm",
+      "Algorithm Steps",
       
       
       column(
@@ -267,9 +268,11 @@ shinyUI(fluidPage(
         h2("How does the algorithm work?"),
         h1(emo::ji("shuffle")),
         p("_______________"),
-        rank_list_basic,
+        algorithm_steps_list,
         tags$b("Result"),
-        verbatimTextOutput("results_basic"),
+        htmlOutput("sorting_accuracy"),
+       
+        
         br(),
         
         fluidRow(
@@ -305,7 +308,7 @@ shinyUI(fluidPage(
         width = 8,
         align = "center",
         offset = 2,
-        h2("Interactive Dashbord"),
+        h2("Let's Play"),
         h1(emo::ji("magnifying")),
         p("_______________"),
         
@@ -338,17 +341,19 @@ shinyUI(fluidPage(
     ),
     
     # RELEVANT EXAMPLE
-    tabPanel(value = "example",
-      'Example',
+    tabPanel(value = "inthenews",
+      'In the News',
       
       column(
         width = 8,
         align = "center",
         offset = 2,
-        h2("Example"),
+        h2("In the News"),
         h1(emo::ji("newspaper")),
         p("_______________"),
         
+        
+        htmlOutput("frame", width="60%"),
         
         fluidRow(
           align = "center",
@@ -369,14 +374,29 @@ shinyUI(fluidPage(
     
     # CRITICAL DISCUSSION PROMPTS
     tabPanel(value = "discussion",
-      'What do you think?',
+      'Discussion Prompts',
       column(
-        width = 8,
+        width = 10,
         align = "center",
-        offset = 2,
-        h2("Discussion Prompts"),
+        offset = 1,
+        h2("What do YOU think?"),
         h1(emo::ji("light_bulb")),
         p("_______________"),
+        
+        wellPanel(style = "background: #60D2CB;width: 75%;",span(textOutput("dq1"),style="font-size: 20px")),
+        textAreaInput("dq1_input", "", width = "70%", resize="vertical"),
+        br(),
+        wellPanel(style = "background: #FFDE70;width: 75%;",span(textOutput("dq2"),style="font-size: 20px;")),
+        textAreaInput("dq2_input","", width = "70%", resize="vertical"),
+        br(),
+        wellPanel(style = "background: #FF8A70;width: 75%;",span(textOutput("dq3"),style="font-size: 20px")),
+        textAreaInput("dq3_input","",width = "70%", resize="vertical"),
+        br(),
+        wellPanel(style = "background: #E1E8F4;width: 75%;",span(textOutput("dq4"),style="font-size: 20px")),
+        textAreaInput("dq4_input","",width = "70%", resize="vertical"),
+        br(),
+        
+        
         fluidRow(
           align = "center",
           
@@ -391,6 +411,8 @@ shinyUI(fluidPage(
             style = "color: #fff; background-color: #337ab7; border-color: #2e6da4"
           )
         ),
+        br(),
+        br(),
         
       ),
     ),
@@ -398,7 +420,7 @@ shinyUI(fluidPage(
     
     
     tabPanel(value = "tiktok",
-      "TikToks",
+      "TikTok Time",
       
       column(
         width = 8,
