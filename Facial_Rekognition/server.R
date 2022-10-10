@@ -12,6 +12,7 @@
 
 library(shiny)
 library(tiktokrmd)
+library(base64enc)
 
 
 
@@ -130,8 +131,9 @@ shinyServer(function(input, output, session) {
   
   make_details <- eventReactive(input$analyze_button, {
     
-    aws_secret_access_key = ""
-    Sys.setenv(AWS_ACCESS_KEY_ID = "", AWS_SECRET_ACCESS_KEY ="", AWS_REGION = "")
+    #aws_secret_access_key = ""
+    #Sys.setenv(AWS_ACCESS_KEY_ID = "", AWS_SECRET_ACCESS_KEY ="", AWS_REGION = "")
+    Sys.setenv(AWS_ACCESS_KEY_ID = "AKIAZBV42NRCGUBNKBHC", AWS_SECRET_ACCESS_KEY ="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", AWS_REGION = "us-east-2")
     svc <- rekognition()
     #svc$index_faces(CollectionId="photos-r", Image=list(Bytes=inFile$datapath), ExternalImageId=imgName, DetectionAttributes=list())
     photo = input[["upload"]]$datapath

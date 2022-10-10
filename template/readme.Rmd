@@ -9,11 +9,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## What are these templates for?
 
+These templates are for supporting critical algorithmic literacies for highschool through graduate students. Each template demonstrates a different way to integrate personally relevant data into an interactive data science exploration of a machine learning algorithm. It includes discussion prompts for students to think more about societal impacts and consequences of ML algorithms and processes. Each lesson also includes an "in the news" component where educators can link a Youtube clip of a news story about the particular technology. The creative expression at the end of the lesson is in the form of a TikTok gallery that students can add to.
+
 ## Template files
 
 #### ui.R
 
+The ui.R file houses the front end HTML-like code. This is where the navigation bar is set up with different tab Panels, and where each of the visual components are defined. For example, here is the code for the Introduction page:
+
 #### server.R
+
+The server.R file houses the functionality. This is where the Back and Next buttons are controlled, as well as the processing of the input.JSON file to populate all the text in the app.
 
 #### global.R
 

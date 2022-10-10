@@ -10,10 +10,10 @@ library(paws)  # used for AWS configuration
 library(magick)  # used for image functions
 library(tidyverse)
 
-#aws_access_key_id = ""
-#
+
+
 aws_secret_access_key = ""
-Sys.setenv(AWS_ACCESS_KEY_ID = "", AWS_SECRET_ACCESS_KEY ="", AWS_REGION = "")
+Sys.setenv(AWS_ACCESS_KEY_ID = "", AWS_SECRET_ACCESS_KEY ="", AWS_REGION = "us-east-2")
 svc <- rekognition()
 
 library(shiny)
